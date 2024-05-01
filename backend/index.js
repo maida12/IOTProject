@@ -6,7 +6,7 @@ const app = express();
 
 
 app.use(cors());
-mongoose.connect('mongodb+srv://orthoimplantsgu:pakistan@cluster0.eegqz25.mongodb.net/IOT?retryWrites=true&w=majority', {
+mongoose.connect('', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
