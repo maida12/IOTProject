@@ -49,12 +49,9 @@ For now, as in tinkercad, there was not an option for ESP which we are actually 
 
 ![Screenshot 2024-05-20 173758](https://github.com/maida12/IOTProject/assets/81500487/66279d92-0c83-4b03-922c-ef07375abc55)
 
+## Our Hardware 
 
-
-
-
-
-
+![WhatsApp Image 2024-05-20 at 10 49 45 PM](https://github.com/maida12/IOTProject/assets/81500487/4db498c7-405d-4c45-bcf5-d45f766c2b4a)
 
 
 ## Code:
