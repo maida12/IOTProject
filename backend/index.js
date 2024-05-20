@@ -7,8 +7,7 @@ const app = express();
 
 app.use(cors());
 <<<<<<< HEAD
-mongoose.connect('', {
-=======
+
 mongoose.connect('', {
 >>>>>>> cadef790827156e3eed71903b7cbb2f70502619c
   useNewUrlParser: true,
