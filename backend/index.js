@@ -6,10 +6,11 @@ const app = express();
 
 
 app.use(cors());
-mongoose.connect('mongodb+srv://orthoimplantsgu:pakistan@cluster0.eegqz25.mongodb.net/IOT?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://orthoimplantsgu:pakistan@ac-cpo8knv-shard-00-00.eegqz25.mongodb.net:27017,ac-cpo8knv-shard-00-01.eegqz25.mongodb.net:27017,ac-cpo8knv-shard-00-02.eegqz25.mongodb.net:27017/IOT?ssl=true&replicaSet=atlas-4i34th-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 
 const db = mongoose.connection;
 

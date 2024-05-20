@@ -9,7 +9,8 @@ const App = () => {
   const [temperatureError, setTemperatureError] = useState(false);
   const MAX_WATER_DISTANCE = 1000; // Example threshold for water distance
   const MAX_TEMPERATURE = 30; // Example threshold for temperature
-
+  const MIN_WATER_DISTANCE = 10; // Example threshold for water distance
+  const MIN_TEMPERATURE = 28; // Example threshold for temperature
 
   useEffect(() => {
     fetchData();
@@ -22,13 +23,13 @@ const App = () => {
       setWaterData(waterResponse.data);
       setTemperatureData(temperatureResponse.data);
       // Check if water distance exceeds the threshold
-      if (waterResponse.data.distance > MAX_WATER_DISTANCE) {
+      if ((waterResponse.data.distance > MAX_WATER_DISTANCE)) {
         setWaterError(true);
       } else {
         setWaterError(false);
       }
       // Check if temperature exceeds the threshold
-      if (temperatureResponse.data.temperature > MAX_TEMPERATURE) {
+      if (temperatureResponse.data.temperature > MAX_TEMPERATURE ||temperatureResponse.data.temperature< MIN_TEMPERATURE) {
         setTemperatureError(true);
       } else {
         setTemperatureError(false);
@@ -38,16 +39,33 @@ const App = () => {
     }
   };
 
+  const Modal = ({ show, onClose, children }) => {
+    if (!show) return null;
+  
+    return (
+      <div className="modal">
+        <div className="modal-content">
+          <span className="close" onClick={onClose}>&times;</span>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container">
       <h1 className="title">Water and Temperature Data</h1>
+      <Modal show={waterError || temperatureError} onClose={() => {setWaterError(false); setTemperatureError(false);}}>
+        <h2 className="modal-title">Danger!</h2>
+        {waterError && <p className="modal-message">Water distance exceeds maximum threshold!</p>}
+        {temperatureError && <p className="modal-message">Temperature exceeds maximum threshold!</p>}
+      </Modal>
       <div className="sensor-data">
         <h2 className="subtitle">Water Data</h2>
         <ul>
           {waterData.map((data, index) => (
             <li key={index} className="data-item">
               <span className="data-label">Distance:</span> {data.distance} meters
-              {waterError && <span className="error-message">Warning: Distance exceeds maximum threshold!</span>}
             </li>
           ))}
         </ul>
@@ -58,7 +76,6 @@ const App = () => {
           {temperatureData.map((data, index) => (
             <li key={index} className="data-item">
               <span className="data-label">Temperature:</span> {data.temperature}°C
-              {temperatureError && <span className="error-message">Warning: Temperature exceeds maximum threshold!</span>}
             </li>
           ))}
         </ul>
